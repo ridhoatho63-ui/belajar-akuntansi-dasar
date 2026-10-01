@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Belajar Akuntansi Dasar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body { background-color: #f4f7f6; color: #1f2937; }
+
+    /* Header Hijau */
+    header {
+      background-color: #1b4d3e;
+      color: white;
+      padding: 25px 40px;
+    }
+    .header-title { font-size: 26px; font-weight: 700; margin-bottom: 5px; }
+    .header-sub { font-size: 14px; opacity: 0.9; margin-bottom: 20px; }
+
+    /* Navigasi Tab */
+    nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .nav-btn.active, .nav-btn:hover {
+      background-color: white;
+      color: #1b4d3e;
+      font-weight: 600;
+    }
+
+    /* Konten Utama */
+    .container { max-width: 950px; margin: 30px auto; padding: 0 20px; }
+    
+    .card-welcome {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+      border: 1px solid #e5e7eb;
+      margin-bottom: 25px;
+    }
+    .card-welcome h2 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: #111827; }
+    .card-welcome p { font-size: 14px; color: #4b5563; line-height: 1.6; margin-bottom: 15px; }
+
+    /* Grid Menu */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 15px; }
+    .menu-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .menu-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.05); }
+    .menu-card h3 { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+    .menu-card p { font-size: 13px; color: #6b7280; line-height: 1.5; }
+
+    /* Area Konten Dinamis */
+    .content-section { display: none; }
+    .content-section.active { display: block; }
+
+    /* List Materi & Tabel */
+    ul { margin-left: 20px; margin-top: 10px; color: #4b5563; font-size: 14px; }
+    li { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+  <!-- Header & Navigasi -->
+  <header>
+    <div class="header-title">Belajar Akuntansi Dasar</div>
+    <div class="header-sub">Untuk kelas X · disusun oleh Apriana Nur Azizah</div>
+    
+    <nav>
+      <button class="nav-btn active" onclick="switchTab('beranda', this)">Beranda</button>
+      <button class="nav-btn" onclick="switchTab('pengantar', this)">Pengantar & Perusahaan</button>
+      <button class="nav-btn" onclick="switchTab('akun', this)">Nama-nama Akun</button>
+      <button class="nav-btn" onclick="switchTab('persamaan', this)">Persamaan akuntansi</button>
+      <button class="nav-btn" onclick="switchTab('jurnal', this)">Jurnal umum</button>
+      <button class="nav-btn" onclick="switchTab('kuis', this)">Kuis</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- TAB BERANDA -->
+    <div id="beranda" class="content-section active">
+      <div class="card-welcome">
+        <h2>Selamat datang</h2>
+        <p>Aplikasi ini membantu kamu memahami alur dasar akuntansi: dari pengenalan perusahaan, nama akun, persamaan akuntansi, hingga mencatat jurnal umum. Semua bisa dicoba langsung dengan mudah.</p>
+      </div>
+
+      <div class="grid">
+        <div class="menu-card" onclick="switchTab('pengantar', document.querySelectorAll('.nav-btn')[1])">
+          <h3>Pengantar & Perusahaan</h3>
+          <p>Mengenal definisi akuntansi serta macam-macam bentuk perusahaan.</p>
+        </div>
+        <div class="menu-card" onclick="switchTab('akun', document.querySelectorAll('.nav-btn')[2])">
+          <h3>Nama-nama Akun</h3>
+          <p>Pahami klasifikasi akun: Aset, Liabilitas, Ekuitas, Pendapatan, dan Beban.</p>
+        </div>
+        <div class="menu-card" onclick="switchTab('persamaan', document.querySelectorAll('.nav-btn')[3])">
+          <h3>Persamaan akuntansi</h3>
+          <p>Pahami Aset = Kewajiban + Modal lewat transaksi.</p>
+        </div>
+        <div class="menu-card" onclick="switchTab('jurnal', document.querySelectorAll('.nav-btn')[4])">
+          <h3>Jurnal umum</h3>
+          <p>Catat transaksi dengan posisi debit dan kredit.</p>
+        </div>
+        <div class="menu-card" onclick="switchTab('kuis', document.querySelectorAll('.nav-btn')[5])">
+          <h3>Kuis</h3>
+          <p>Uji pemahamanmu seputar materi akuntansi.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB PENGANTAR & PERUSAHAAN -->
+    <div id="pengantar" class="content-section">
+      <div class="card-welcome">
+        <h2>Pengantar Akuntansi & Macam Perusahaan</h2>
+        <p><strong>Akuntansi</strong> adalah proses mencatat, menggolongkan, meringkas, dan menyajikan laporan keuangan transaksi ekonomi guna pengambilan keputusan.</p>
+        <p>Berdasarkan kegiatan usahanya, perusahaan dibagi menjadi 3 jenis utama:</p>
+        <ul>
+          <li><strong>Perusahaan Jasa:</strong> Perusahaan yang menjual produk berupa layanan/keahlian (Contoh: Salon, Bengkel, Kantor Akuntan).</li>
+          <li><strong>Perusahaan Dagang:</strong> Perusahaan yang membeli barang jadi dan menjualnya kembali tanpa mengubah bentuk (Contoh: Toko Kelontong, Minimarket).</li>
+          <li><strong>Perusahaan Manufaktur:</strong> Perusahaan yang mengolah bahan baku mentah menjadi barang jadi (Contoh: Pabrik Tekstil, Pabrik Makanan).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TAB NAMA-NAMA AKUN -->
+    <div id="akun" class="content-section">
+      <div class="card-welcome">
+        <h2>Klasifikasi & Nama-nama Akun (Rekening)</h2>
+        <p>Dalam siklus akuntansi, akun dikelompokkan menjadi 5 elemen utama:</p>
+        <ul>
+          <li><strong>Aset (Harta):</strong> Kekayaan yang dimiliki perusahaan (Contoh: Kas, Piutang Usaha, Perlengkapan, Peralatan, Gedung).</li>
+          <li><strong>Liabilitas (Utang):</strong> Kewajiban membayar kepada pihak lain (Contoh: Utang Usaha, Utang Bank).</li>
+          <li><strong>Ekuitas (Modal):</strong> Hak milik pemilik atas kekayaan perusahaan (Contoh: Modal Pemilik, Prive).</li>
+          <li><strong>Pendapatan:</strong> Penambahan aset akibat penjualan jasa/barang (Contoh: Pendapatan Jasa, Pendapatan Sewa).</li>
+          <li><strong>Beban:</strong> Pengorbanan untuk memperoleh pendapatan (Contoh: Beban Gaji, Beban Listrik & Air, Beban Iklan).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TAB PERSAMAAN AKUNTANSI -->
+    <div id="persamaan" class="content-section">
+      <div class="card-welcome">
+        <h2>Persamaan Dasar Akuntansi</h2>
+        <p>Rumus dasar yang wajib diingat dalam akuntansi:</p>
+        <p style="text-align: center; font-size: 18px; font-weight: bold; color: #1b4d3e; margin: 15px 0;">Aset = Kewajiban + Ekuitas</p>
+        <p>Setiap transaksi keuangan akan selalu menjaga keseimbangan antara sisi harta (kiri) dan sumber pendanaan (kanan).</p>
+      </div>
+    </div>
+
+    <!-- TAB JURNAL UMUM -->
+    <div id="jurnal" class="content-section">
+      <div class="card-welcome">
+        <h2>Jurnal Umum</h2>
+        <p>Jurnal umum adalah catatan kronologis transaksi keuangan perusahaan. Aturan pencatatan saldo normal:</p>
+        <ul>
+          <li><strong>Aset & Beban:</strong> Bertambah di sisi <em>Debit</em>, berkurang di sisi <em>Kredit</em>.</li>
+          <li><strong>Liabilitas, Ekuitas, & Pendapatan:</strong> Bertambah di sisi <em>Kredit</em>, berkurang di sisi <em>Debit</em>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TAB KUIS -->
+    <div id="kuis" class="content-section">
+      <div class="card-welcome">
+        <h2>Kuis Pemahaman</h2>
+        <p>Fitur kuis interaktif uji pemahaman materi akuntansi dasar akan segera hadir di sini!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabId, btnElement) {
+      document.querySelectorAll('.content-section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+      if(btnElement) btnElement.classList.add('active');
+    }
+  </script>
+</body>
+</html>
